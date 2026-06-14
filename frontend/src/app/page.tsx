@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { tailorResume } from "@/lib/api";
-import { Resume } from "@/types/resume";
+import { Resume } from "@/app/types/resume";
 
 export default function Home() {
   const [baseResumeText, setBaseResumeText] = useState("");
@@ -148,6 +148,35 @@ export default function Home() {
                   ))}
                 </div>
               </section>
+            )}
+
+            {resumeData.certificates && resumeData.certificates.length > 0 && (
+                <section className="mb-6">
+                  <h2 className="text-xl font-bold border-b border-gray-300 mb-2 uppercase text-gray-800">
+                    Certyfikaty
+                  </h2>
+                  <div className="flex flex-col gap-3">
+                    {resumeData.certificates.map((cert, idx) => (
+                        <div key={idx}>
+                          <div className="flex justify-between font-bold text-gray-800 text-md">
+                            <span>{cert.title}</span>
+                          </div>
+                          <div className="text-gray-900 text-sm">
+                            {cert.institution}
+                          </div>
+                          <div className="text-gray-600 text-sm">
+                            {cert.date_of_receive}
+                          </div>
+                          <div className="text-gray-600 text-sm">
+                            {cert?.id}
+                          </div>
+                          <div className="text-gray-600 text-sm">
+                            {cert?.link}
+                          </div>
+                        </div>
+                    ))}
+                  </div>
+                </section>
             )}
 
             {resumeData.skills && resumeData.skills.length > 0 && (
